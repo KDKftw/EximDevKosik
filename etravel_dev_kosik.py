@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 
-##cant figure out how to select osloveni in the popup box so stucked on that  ##stil this omg posted on stck to find solution
+##cant figure out how to select osloveni in the popup box so stucked on that
 
 def closeExponeaBanner(driver):
     time.sleep(1.5)
@@ -100,7 +100,7 @@ def passengerNameLast(pocetCestujicich):
     locator = "//*[@name='room.0.passenger." + pocetCestujicich + ".name.last']"
     print(locator)
     return locator
-
+wait = WebDriverWait(driver, 150000)
 
 osloveni = driver.find_element_by_xpath(passengerOsloveni(pocetCestujicich))
 wait.until(EC.visibility_of(osloveni))
@@ -111,11 +111,17 @@ time.sleep(12)
 volbaOsloveni = driver.find_elements_by_xpath("//*[@class='f_input-optionsWrapper js_optionsWrapper'] //*[@class='f_input-option-text']")
 volbaOsloveni2 = driver.find_elements_by_xpath("//*[@data-testid='Pan']")
 volbaOsloveni3 = driver.find_element_by_xpath("//*[@class='f_customScroll'] //*[@data-testid='Pan']")
+volbaOsloveni4 = driver.find_element_by_xpath("//div[@class='f_input-options']//div[@class='f_input-options-content']//div[@data-testid='Pan']")
+volbaOsloveni5 = driver.find_element_by_xpath("(//div[@data-testid='Paní'])[1]")
 ##volbaOsloveni[0].click()
 ##driver.execute_script("arguments[0].click();", volbaOsloveni3)
-time.sleep(2)
-volbaOsloveni2[1].click()
+time.sleep(4)
+##volbaOsloveni2[1].click()
 
+wait.until(EC.element_to_be_clickable(volbaOsloveni5)).click()
+time.sleep(2)
+potvrditPopup = driver.find_element_by_xpath("(//*[@class='f_button f_button--common f_button_set--small'])[1]")
+potvrditPopup.click()
 
 
 
