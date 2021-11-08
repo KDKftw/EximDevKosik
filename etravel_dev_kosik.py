@@ -63,6 +63,7 @@ emailKO = driver.find_element_by_xpath("//*[@name='customer.email']")
 phoneKO = driver.find_element_by_xpath("//*[@name='customer.phoneNumber']")
 
 wait.until(EC.visibility_of(firstNameKO))
+acceptConsent(driver)
 firstNameKO.send_keys(name)
 lastNameKO.send_keys(surname)
 emailKO.send_keys(email)
@@ -118,10 +119,49 @@ volbaOsloveni5 = driver.find_element_by_xpath("(//div[@data-testid='Paní'])[1]"
 time.sleep(4)
 ##volbaOsloveni2[1].click()
 
-wait.until(EC.element_to_be_clickable(volbaOsloveni5)).click()
+
+def osloveniLocators(pocetCestujicich):
+    locator = "(//*[@class='f_input-optionsWrapper js_optionsWrapper'] //*[@class='f_input-option-text'])"  ##nejsem schopnej locatnout pouze 1 volbu v popupu, takže beru obě dvě volby
+    ##klikat se bude prvně [3] a pak [1]
+    osloveniLocatorsList = []
+    pocetCestujicich = pocetCestujicich * 2
+    for _ in range(pocetCestujicich):
+
+        correctLocator = locator + "[" + str(pocetCestujicich) + "]"
+        ##print(correctLocator)
+
+        osloveniLocatorsList.append(correctLocator)
+        pocetCestujicich = pocetCestujicich - 1
+
+    ##print(osloveniLocatorsList)
+    return(osloveniLocatorsList)
+
+panNeboPani = driver.find_element_by_xpath(osloveniLocators(2)[3])
+##print(panNeboPani)
+##panNeboPani.click()
+wait.until(EC.element_to_be_clickable(panNeboPani)).click()
 time.sleep(2)
 potvrditPopup = driver.find_element_by_xpath("(//*[@class='f_button f_button--common f_button_set--small'])[1]")
 potvrditPopup.click()
+
+panNeboPani = driver.find_element_by_xpath(osloveniLocators(2)[0])
+wait.until(EC.element_to_be_clickable(panNeboPani)).click()
+time.sleep(2)
+potvrditPopup = driver.find_element_by_xpath("(//*[@class='f_button f_button--common f_button_set--small'])[1]")
+potvrditPopup.click()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
