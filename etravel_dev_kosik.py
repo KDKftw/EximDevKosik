@@ -143,11 +143,15 @@ wait.until(EC.element_to_be_clickable(panNeboPani)).click()
 time.sleep(2)
 potvrditPopup = driver.find_element_by_xpath("(//*[@class='f_button f_button--common f_button_set--small'])[1]")
 potvrditPopup.click()
+time.sleep(2)
 
+
+osloveni2 = driver.find_element_by_xpath(passengerOsloveni(2))
+osloveni2.click()
 panNeboPani = driver.find_element_by_xpath(osloveniLocators(2)[0])
 wait.until(EC.element_to_be_clickable(panNeboPani)).click()
 time.sleep(2)
-potvrditPopup = driver.find_element_by_xpath("(//*[@class='f_button f_button--common f_button_set--small'])[1]")
+potvrditPopup = driver.find_element_by_xpath("(//*[@class='f_button f_button--common f_button_set--small'])[2]")
 potvrditPopup.click()
 
 
